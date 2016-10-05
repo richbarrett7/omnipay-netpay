@@ -41,6 +41,7 @@ class ApiCheck3dsEnrollmentRequest extends ApiPurchaseRequest
         unset($data['payment_source']['card']['holder']);
         unset($data['shipping']);
         unset($data['customer']);
+        unset($data['billing']);
 
         return $data;
     }
