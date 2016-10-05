@@ -165,4 +165,15 @@ class ApiGateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\NetPay\Message\ApiTokenRetrieveRequest', $parameters);
     }
+    
+    public function check3dsEnrollment(array $parameters = array())
+    {
+      return $this->createRequest('\Omnipay\NetPay\Message\ApiCheck3dsEnrollmentRequest', $parameters);
+    }
+    
+    public function processAcsResult(array $parameters = array())
+    {
+      return $this->createRequest('\Omnipay\NetPay\Message\ApiProcessAcsResultRequest', $parameters);
+    }
+    
 }
