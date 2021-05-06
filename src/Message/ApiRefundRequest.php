@@ -17,6 +17,20 @@ class ApiRefundRequest extends AbstractRequest
         return $this->setParameter('orderId', $value);
     }
     
+    public function getTransactionSource() {
+      
+      $r = $this->getParameter('transactionSource');
+      if($r == null) return 'INTERNET';
+      return $r;
+      
+    }
+    
+    public function setTransactionSource($value) {
+      
+      return $this->setParameter('transactionSource', $value);
+            
+    }
+    
     public function getData()
     {
         $this->setApiMethod('gateway/transaction');
@@ -30,7 +44,7 @@ class ApiRefundRequest extends AbstractRequest
         $data['transaction']['transaction_id'] = $this->createUniqueTransactionId($this->getTransactionId());
         $data['transaction']['amount'] = $this->getAmount();
         $data['transaction']['currency'] = $this->getCurrency();
-        $data['transaction']['source'] = 'INTERNET';
+        $data['transaction']['source'] = $this->getTransactionSource();
         $description = trim(substr($this->getDescription(), 0, 100));
         if(strlen($description) === 0) {
             $description = substr("Refund with transaction id ".$this->getTransactionId()." and amount ".$this->getCurrency()." ".$this->getAmount()." has been requested.", 0, 100);
